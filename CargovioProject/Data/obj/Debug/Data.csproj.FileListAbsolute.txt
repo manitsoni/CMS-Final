@@ -1,0 +1,16 @@
+D:\CargovioProject\Cargovio\Data\bin\Debug\Data.dll.config
+D:\CargovioProject\Cargovio\Data\bin\Debug\Data.dll
+D:\CargovioProject\Cargovio\Data\bin\Debug\Data.pdb
+D:\CargovioProject\Cargovio\Data\bin\Debug\EntityFramework.dll
+D:\CargovioProject\Cargovio\Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\CargovioProject\Cargovio\Data\bin\Debug\EntityFramework.xml
+D:\CargovioProject\Cargovio\Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\CargovioProject\Cargovio\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+D:\CargovioProject\Cargovio\Data\obj\Debug\Data.dll
+D:\CargovioProject\Cargovio\Data\obj\Debug\Data.pdb
+D:\CargovioProject\Cargovio\Data\bin\Debug\BusinessEntities.dll
+D:\CargovioProject\Cargovio\Data\bin\Debug\Common.dll
+D:\CargovioProject\Cargovio\Data\bin\Debug\Newtonsoft.Json.dll
+D:\CargovioProject\Cargovio\Data\bin\Debug\BusinessEntities.pdb
+D:\CargovioProject\Cargovio\Data\bin\Debug\Common.pdb
+D:\CargovioProject\Cargovio\Data\bin\Debug\Newtonsoft.Json.xml
