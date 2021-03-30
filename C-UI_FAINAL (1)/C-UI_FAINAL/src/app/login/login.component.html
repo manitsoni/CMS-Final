@@ -1,0 +1,44 @@
+
+<div class="container" style="padding-top:60px;">  
+    <div class="row">  
+      <div class="col-md-6 mx-auto">  
+        <div class="card-group">  
+          <div class="card p-4">  
+            <div class="card-body">  
+              <form [formGroup]="LoginForm" (ngSubmit)="onFormSubmit()">   
+                <h1 style="text-align:center">Login</h1>  
+                 
+                <div class="input-group mb-3">  
+                    <input type="text" class="form-control" placeholder="Email" text="admin@cargovio.in" formControlName="Email">  
+                   
+                  </div>  
+                  <div
+                  class="text-danger"
+                 *ngIf="(loginControl.Email.touched || submitted) && loginControl.Email.errors?.required">
+                 Email must be required
+             </div>
+                  <div class="input-group mb-3">  
+                    <input type="password" class="form-control" placeholder="Password" text="admin"  formControlName="Password">  
+                    
+                  </div>
+                  <div class="text-danger"
+                    *ngIf="(loginControl.Password.touched || submitted) && loginControl.Password.errors?.required">
+                    Password must be required
+                  </div>
+                <div>  
+                    <small style="color:#E92626;font-size:20px;font-weight:normal" Class="success" align="left">  
+                      {{errorMessage}}  
+                    </small>  
+                </div>  
+                <button type="submit" class="btn btn-block btn-primary">Login</button>     
+              </form>  
+             
+                  <a class="nav-link" routerLink="/user-registration">Register Your Account</a>
+               
+              
+            </div>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+

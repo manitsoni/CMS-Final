@@ -1,0 +1,78 @@
+<div class="container" style="padding-top:40px;">  
+    <div class="row">  
+      <div class="col-md-6 mx-auto">  
+        <div class="card mx-4">  
+          <div class="card-body p-4">  
+            <form [formGroup]="Form" (ngSubmit)="onFormSubmit()">  
+              <h1 style="text-align:center">Add your company details</h1>  
+            
+              <div class="input-group mb-3">  
+                <input type="text" class="form-control" placeholder="Company Name"  formControlName="CompanyName">  
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.CompanyName.touched || submitted) && companyregisterControl.CompanyName.errors?.required">
+                CompanyName is required
+            </span>
+              </div>  
+              <div class="input-group mb-3">  
+                <input type="text" class="form-control" placeholder="Web site link"  formControlName="WebSiteLink">  
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.WebSiteLink.touched || submitted) && companyregisterControl.WebSiteLink.errors?.required">
+                WebSiteLink is required
+            </span>
+              </div>  
+              <!-- <div class="input-group mb-4">  
+                  <input type="text" class="form-control" placeholder="CompanySize"  formControlName="CompanySize">  
+                </div>     -->
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Address Line 1"  formControlName="CopmanyAddress1">  
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.CopmanyAddress1.touched || submitted) && companyregisterControl.CopmanyAddress1.errors?.required">
+                CopmanyAddress1 is required
+            </span>
+              </div>  
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Address Line 2"  formControlName="CopmanyAddress2">  
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.CopmanyAddress2.touched || submitted) && companyregisterControl.CopmanyAddress2.errors?.required">
+                CopmanyAddress2 is required
+            </span>
+              </div>
+              <div class="input-group mb-4">  
+                <!-- <input type="text" class="form-control" placeholder="City"  formControlName="City">   -->
+                <select required name="City" formControlName="City"  class="form-control">  
+                  <option value="undefined" selected>Select City</option>
+                  <option *ngFor="let office of allOffice"  [ngValue]="office.BranchLocation"> {{office.BranchLocation}}  </option>  
+                </select>
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.City.touched || submitted) && companyregisterControl.City.errors?.required">
+                City is required
+            </span>
+              </div>
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="State"  formControlName="State">  
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.State.touched || submitted) && companyregisterControl.State.errors?.required">
+                State is required
+            </span>
+              </div>
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Country"  formControlName="Country">  
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.Country.touched || submitted) && companyregisterControl.Country.errors?.required">
+                Country is required
+            </span>
+              </div>
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Pincode"  formControlName="Pincode">  
+                <span class="text-danger"
+                *ngIf="(companyregisterControl.Pincode.touched || submitted) && companyregisterControl.Pincode.errors?.required">
+                Pincode is required
+            </span>
+              </div>
+              <button type="submit" class="btn btn-block btn-success">Register Company</button>  
+            </form>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </div>

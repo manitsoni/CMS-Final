@@ -1,0 +1,51 @@
+<div class="container" style="padding-top:40px;">  
+    <div class="row">  
+      <div class="col-md-6 mx-auto">  
+        <div class="card mx-4">  
+          <div class="card-body p-4">  
+            <form [formGroup]="Form" (ngSubmit)="onFormSubmit()">  
+              <h1 style="text-align:center">Add Your Office Details</h1>  
+            
+              <div class="input-group mb-3">  
+                <input type="text" class="form-control" placeholder="Office Location"  formControlName="BranchLocation">  
+                <span class="text-danger"
+                *ngIf="(officeregisterControl.BranchLocation.touched || submitted) && officeregisterControl.BranchLocation.errors?.required">
+                BranchLocation is required
+            </span>
+              </div>  
+              <div class="input-group mb-3">  
+                <input type="text" class="form-control" placeholder="City"  formControlName="City">  
+                <span class="text-danger"
+                *ngIf="(officeregisterControl.City.touched || submitted) && officeregisterControl.City.errors?.required">
+                City is required
+            </span>
+              </div>  
+              <div class="input-group mb-3">  
+                <input type="text" class="form-control" placeholder="State"  formControlName="State">  
+                <span class="text-danger"
+                *ngIf="(officeregisterControl.State.touched || submitted) && officeregisterControl.State.errors?.required">
+                State is required
+            </span>
+              </div>  
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Country"  formControlName="Country">  
+                <span class="text-danger"
+                *ngIf="(officeregisterControl.Country.touched || submitted) && officeregisterControl.Country.errors?.required">
+                Country is required
+            </span>
+              </div>  
+              <div class="input-group mb-4">  
+                <input type="text" class="form-control" placeholder="Pincode"  formControlName="Pincode">  
+                <span class="text-danger"
+                *ngIf="(officeregisterControl.Pincode.touched || submitted) && officeregisterControl.Pincode.errors?.required">
+                Pincode is required
+            </span>
+              </div>  
+             
+              <button type="submit" class="btn btn-block btn-success">Register Office</button>  
+            </form>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </div>

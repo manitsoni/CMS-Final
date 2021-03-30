@@ -1,0 +1,112 @@
+<nav  *ngIf="isLogged" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand"  routerLink="/customer-admin-dashboard">
+       Cargovio
+      </a>
+    </div>
+    <app-customer-admin-navbar></app-customer-admin-navbar>
+  </div>
+</nav>
+
+<div class="main-content" id="panel" *ngIf="isLogged">
+  <!-- Topnav -->
+
+  <!-- Header -->
+  <!-- Header -->
+  <div class="header bg-gradient-info pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a routerLink="/get-customers-quotation"><i class="ni ni-align-left-2"></i></a></li>
+              <li class="breadcrumb-item"><a routerLink="/customer-admin-dashboard">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/get-customers-quotation">Quotation List</a></li>
+             
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">Quotation List</h3>
+          </div>
+          <div class="col-md-3">
+            <input class="form-control" type="text" placeholder="Search With Booking Details..." [(ngModel)]="filter"> 
+          </div>
+          <br>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th class="tbl2">SourceAddress1</th>
+                  <th class="tbl2">SourceAddress2</th>
+                  <th class="tbl2">Source Pincode</th>
+                  <th class="tbl2">Source City</th>  
+                  <th class="tbl2">Source State</th>  
+                  <th class="tbl2">Source Country</th>   
+                  <th class="tbl2">Destination Address1</th> 
+                  <th class="tbl2">Destination Address2</th> 
+                  <th class="tbl2"> Destination Pincode</th>
+                  <th class="tbl2">Destination City</th>
+                  <th class="tbl2">Destination State</th>
+                  <th class="tbl2">Destination Country</th>
+                  <th class="tbl2">Packagename</th>
+                  <th class="tbl2">Quantity</th>
+                  <th class="tbl2">Width</th>
+                  
+                  <th class="tbl2">Height</th>
+                  <th class="tbl2">Lenght</th>
+                  <th class="tbl2">Weight</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <tr *ngFor="let quotation of allQuotation | async|filter:filter| paginate: { itemsPerPage: 5, currentPage: p }">
+                  <td class="tbl2">{{ quotation.SourceAddress1 }}</td>
+                  <td class="tbl2">{{ quotation.SourceAddress2 }}</td>
+                  <td class="tbl2">{{ quotation.DestinationPincode}}</td>
+                  <td class="tbl2"> {{ quotation.SourceCity }}</td>
+                  <td class="tbl2"> {{ quotation.SourceState }}</td>
+                  <td class="tbl2"> {{ quotation.SourceCountry }}</td>
+                  <td class="tbl2">{{ quotation.DestinationAddress1  }}</td>
+                  <td class="tbl2">{{ quotation.DestinationAddress2 }}</td>
+                  <td class="tbl2">{{ quotation.SourcePincode}}</td>
+                  <td class="tbl2"> {{ quotation.DestinationCity }}</td>
+                  <td class="tbl2"> {{ quotation.DestinationState }}</td>
+                  <td class="tbl2"> {{ quotation.DestinationCountry }}</td>
+                  <td class="tbl2"> {{ quotation.Packagename }}</td>
+                  <td class="tbl2"> {{ quotation.Quantity }}</td>
+                  <td class="tbl2"> {{ quotation.Width }}</td>
+                  <td class="tbl2">{{ quotation.CreatedDate }}</td>
+                  <td class="tbl2"> {{ quotation.Height }}</td>
+                  <td class="tbl2"> {{ quotation.Lenght }}</td>
+                  <td class="tbl2"> {{ quotation.Weight }}</td>
+                </tr>
+              </tbody>
+              <ul class="pagination col-md-12">  
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+              </ul>
+            </table>
+          </div>
+          <!-- Card footer -->
+         
+        </div>
+      </div>
+    </div>
+    <!-- Dark table -->
+   
+    <!-- Footer -->
+    
+  </div>
+</div>
+

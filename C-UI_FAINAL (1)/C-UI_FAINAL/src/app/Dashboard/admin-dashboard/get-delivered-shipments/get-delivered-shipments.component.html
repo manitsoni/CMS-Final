@@ -1,0 +1,92 @@
+<nav  *ngIf="isLogged" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" routerLink="/admin-dashboard">
+       Cargovio
+      </a>
+    </div>
+    <app-admin-navbar></app-admin-navbar>
+  </div>
+</nav>
+
+<div class="main-content" id="panel" *ngIf="isLogged">
+  <!-- Topnav -->
+
+  <!-- Header -->
+  <!-- Header -->
+  <div class="header bg-gradient-info pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a routerLink="/get-delivered-shipments"><i class="ni ni-delivery-fast"></i></a></li>
+              <li class="breadcrumb-item"><a routerLink="/admin-dashboard">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/get-delivered-shipments">Delivered Shipments</a></li>
+            
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">Delivered Shipments</h3>
+          </div>
+          <div class="col-md-3">
+            <input class="form-control" type="text" placeholder="Search With Booking Details..." [(ngModel)]="filter"> 
+          </div>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th class="tbl2">ShipmentId</th>
+                  <th class="tbl2">CargoLocation</th>
+                  <th class="tbl2">CargoStatus</th>
+                  <th class="tbl2">SourceCity</th>
+                  <th class="tbl2">SourcePincode</th>
+                  <th class="tbl2">DestinationCity</th>
+                  <th class="tbl2">DestinationPincode</th>
+                  <th class="tbl2">Packagename</th>
+                  <th class="tbl2">Quantity</th>
+                  <th class="tbl2">Delivered Date & Time</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <tr *ngFor="let booking of getDeliveredShipmentData | async|filter:filter| paginate: { itemsPerPage: 5, currentPage: p }">
+                  <td class="tbl2">{{ booking.ShipmentId }}</td>
+                  <td class="tbl2">{{ booking.CargoLocation }}</td>
+                  <td class="tbl2">{{ booking.CargoStatus }}</td>
+                  <td class="tbl2">{{ booking.SourceCity }}</td>
+                  <td class="tbl2">{{ booking.SourcePincode }}</td>
+                  <td class="tbl2">{{ booking.DestinationCity }}</td>
+                  <td class="tbl2">{{ booking.DestinationPincode }}</td>
+                  <td class="tbl2">{{ booking.Packagename }}</td>
+                  <td class="tbl2">{{ booking.Quantity }}</td> 
+                  <td class="tbl2">{{ booking.UpdatedDate }}</td>               
+                </tr>
+              </tbody>
+              <ul class="pagination col-md-12">  
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+              </ul> 
+            </table>
+          </div>
+          <!-- Card footer -->
+         
+        </div>
+      </div>
+    </div>
+    <!-- Dark table -->
+   
+    <!-- Footer -->
+    
+  </div>
+</div>

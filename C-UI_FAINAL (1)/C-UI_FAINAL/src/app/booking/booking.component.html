@@ -1,0 +1,253 @@
+<nav  *ngIf="isLogged" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" routerLink="/customer-dashboard">
+       Cargovio
+      </a>
+    </div>
+    <app-customer-navbar></app-customer-navbar>
+  </div>
+</nav>
+<div class="main-content" id="panel" *ngIf="isLogged">
+  <!-- Topnav -->
+ 
+  <!-- Header -->
+  <!-- Header -->
+  <div class="header bg-gradient-info pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a routerLink="/booking"><i class="fas fa-truck"></i></a></li>
+              <li class="breadcrumb-item"><a routerLink="/customer-dashboard">Home</a></li>
+                
+              <li class="breadcrumb-item"><a routerLink="/booking">Add New Bookings</a></li>
+             
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--6" style="padding-top:40px;" >  
+    <div class="row">  
+      <div class="col-md-9 mx-auto">  
+        <div class="card mx-4">  
+          <div class="card-body p-4">  
+            <form [formGroup]="Form" (ngSubmit)="onFormSubmit()">
+              <h1 style="text-align:center">New booking</h1>  
+              <div class="row">
+                <div class="col-md-6">
+                    <h4>Sender Details</h4>
+                    <div class="input-group mb-3">  
+                      <input type="text" class="form-control" placeholder="Address(Area and Street)"  formControlName="SourceAddress1">  
+                      <span class="text-danger"
+                      *ngIf="(bookingControl.SourceAddress1.touched || submitted) && bookingControl.SourceAddress1.errors?.required">
+                      Address is required
+                  </span>
+                    </div>
+                    <div class="input-group mb-3">  
+                      <input type="text" class="form-control" placeholder="Locality"  formControlName="SourceAddress2">  
+                      <span class="text-danger"
+                      *ngIf="(bookingControl.SourceAddress2.touched || submitted) && bookingControl.SourceAddress2.errors?.required">
+                      SourceAddress2 is required
+                  </span>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <!-- <input type="text" class="form-control" placeholder="City"  formControlName="SourceCity">   -->
+                              <select required name="SourceCity" formControlName="SourceCity"  class="form-control">  
+                              
+                                <option *ngFor="let office of myOffice" selected [ngValue]="office.BranchLocation"> {{office.BranchLocation}}  </option>  
+                              </select>
+                              <span class="text-danger"
+                              *ngIf="(bookingControl.SourceCity.touched || submitted) && bookingControl.SourceCity.errors?.required">
+                              SourceCity is required
+                          </span>
+                            </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <input type="text" class="form-control" placeholder="State"  formControlName="SourceState">  
+                              <span class="text-danger"
+                              *ngIf="(bookingControl.SourceState.touched || submitted) && bookingControl.SourceState.errors?.required">
+                              SourceState is required
+                          </span>
+                            </div> 
+                      </div>
+                    </div>
+              
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <input type="text" class="form-control" placeholder="Country"  formControlName="SourceCountry">  
+                              <span class="text-danger"
+                              *ngIf="(bookingControl.SourceCountry.touched || submitted) && bookingControl.SourceCountry.errors?.required">
+                              SourceCountry is required
+                          </span>
+                            </div> 
+                      </div>
+                      <div class="col-md-6"><div class="input-group mb-3">  
+                          <input type="text" class="form-control" placeholder="Pincode"  formControlName="SourcePincode">  
+                          <span class="text-danger"
+                          *ngIf="(bookingControl.SourcePincode.touched || submitted) && bookingControl.SourcePincode.errors?.required">
+                          SourcePincode is required
+                      </span>
+                        </div>
+                      </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-6">
+                    <h4>Receiver Details</h4>
+                    <div class="input-group mb-3">  
+                      <input type="text" class="form-control" placeholder="Address(Area and Street)"  formControlName="DestinationAddress1">  
+                      <span class="text-danger"
+                      *ngIf="(bookingControl.DestinationAddress1.touched || submitted) && bookingControl.DestinationAddress1.errors?.required">
+                      DestinationAddress1 is required
+                  </span>
+                    </div>  
+                    <div class="input-group mb-3">  
+                      <input type="text" class="form-control" placeholder="Locality"  formControlName="DestinationAddress2">  
+                      <span class="text-danger"
+                      *ngIf="(bookingControl.DestinationAddress2.touched || submitted) && bookingControl.DestinationAddress2.errors?.required">
+                      DestinationAddress2 is required
+                  </span>
+                    </div>  
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <!-- <input type="text" class="form-control" placeholder="City"  formControlName="DestinationCity">   -->
+                              <select required name="DestinationCity" formControlName="DestinationCity"  class="form-control">  
+                                
+                                <option *ngFor="let office of allOffice" selected [ngValue]="office.BranchLocation"> {{office.BranchLocation}}  </option>  
+                              </select>
+                              <span class="text-danger"
+                              *ngIf="(bookingControl.DestinationCity.touched || submitted) && bookingControl.DestinationCity.errors?.required">
+                              DestinationCity is required
+                          </span>
+                            </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <input type="text" class="form-control" placeholder="State"  formControlName="DestinationState">  
+                              <span class="text-danger"
+                              *ngIf="(bookingControl.DestinationState.touched || submitted) && bookingControl.DestinationState.errors?.required">
+                              DestinationState is required
+                          </span>
+                            </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <input type="text" class="form-control" placeholder="Country"  formControlName="DestinationCountry">  
+                              <span class="text-danger"
+                              *ngIf="(bookingControl.DestinationCountry.touched || submitted) && bookingControl.DestinationCountry.errors?.required">
+                              DestinationCountry is required
+                          </span>
+                            </div> 
+                      </div>
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <input type="text" class="form-control" placeholder="Pincode"  formControlName="DestinationPincode">  
+                              <span class="text-danger"
+                              *ngIf="(bookingControl.DestinationPincode.touched || submitted) && bookingControl.DestinationPincode.errors?.required">
+                              DestinationPincode is required
+                          </span>
+                            </div> 
+                      </div>
+                    </div>
+   
+                </div>
+              </div>
+              <h4>Documents Details</h4>
+              <div class="input-group mb-4">
+                <input type="text" class="form-control" placeholder="DocumentName" formControlName="DocumentName">
+                <span class="text-danger"
+                *ngIf="(bookingControl.DocumentName.touched || submitted) && bookingControl.DocumentName.errors?.required">
+                DocumentName is required</span>
+              </div>
+              <div class="input-group mb-4">
+                <input type="text" class="form-control" placeholder="DocumentNumber" formControlName="DocumentNumber">
+                <span class="text-danger"
+                *ngIf="(bookingControl.DocumentNumber.touched || submitted) && bookingControl.DocumentNumber.errors?.required">
+                DocumentNumber is required
+            </span>
+              </div>
+
+              <h4>Package Details</h4>
+              <div class="input-group mb-4">
+                <input type="text" class="form-control" placeholder="Packagename" formControlName="Packagename">
+                <span class="text-danger"
+                *ngIf="(bookingControl.Packagename.touched || submitted) && bookingControl.Packagename.errors?.required">
+                Packagename is required
+            </span>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group mb-4">
+                    <input type="text" class="form-control" placeholder="Quantity" formControlName="Quantity">
+                    <span class="text-danger"
+                    *ngIf="(bookingControl.Quantity.touched || submitted) && bookingControl.Quantity.errors?.required">
+                    Quantity is required
+                </span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Width" formControlName="Width">
+                        <span class="text-danger"
+                        *ngIf="(bookingControl.Width.touched || submitted) && bookingControl.Width.errors?.required">
+                        Width is required
+                    </span>
+                      </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Height" formControlName="Height">
+                        <span class="text-danger"
+                        *ngIf="(bookingControl.Height.touched || submitted) && bookingControl.Height.errors?.required">
+                        Height is required
+                    </span>
+                      </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Lenght" formControlName="Lenght">
+                        <span class="text-danger"
+                        *ngIf="(bookingControl.Lenght.touched || submitted) && bookingControl.Lenght.errors?.required">
+                        Lenght is required
+                    </span>
+                      </div>
+                </div>
+              </div>
+              
+              
+              <div class="input-group mb-4">
+                <input type="text" class="form-control" placeholder="Weight" formControlName="Weight">
+                <span class="text-danger"
+                *ngIf="(bookingControl.Weight.touched || submitted) && bookingControl.Weight.errors?.required">
+                Weight is required
+            </span>
+              </div>
+              
+              <button type="submit" class="btn btn-block btn-success">Book Cargo</button>  
+            </form>  
+            <br>
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </div>
+</div>

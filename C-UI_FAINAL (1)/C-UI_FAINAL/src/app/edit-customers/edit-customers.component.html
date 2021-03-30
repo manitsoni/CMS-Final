@@ -1,0 +1,76 @@
+<div *ngIf="isLogged">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Cargovio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" routerLink="/booking">Book Cargo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/quotation">Quotation</a>
+          </li> -->
+        </ul>
+      </div>
+    </nav>
+  </div>
+<div class="container" style="padding-top:40px;" *ngIf="isLogged">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card mx-4">
+                <div class="card-body p-4">
+                    <form [formGroup]="Form" (ngSubmit)="onFormSubmit()">
+                        <h1 style="text-align:center">Edit Customers</h1>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="User Name" formControlName="UserName" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Enter Your Email"
+                                formControlName="Email" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="Enter Your Password"
+                                formControlName="Password" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Enter Your Mobile number"
+                                formControlName="ContactNo" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Address(Area and Street)"
+                                formControlName="Addressline1" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Locality"
+                                formControlName="Addressline2" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="City" formControlName="City" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="State" formControlName="State" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Country" formControlName="Country" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Pincode" formControlName="Pincode" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <select formControlName="Role" class="form-control">
+                                <option value="CustomerAdmin">Customer Admin</option>
+                                <option value="Customer" selected>Customer</option>
+                            </select>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-block btn-success">Save Changes</button> -->
+                        <button (click)="successNotification()">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

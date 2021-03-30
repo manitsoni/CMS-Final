@@ -1,0 +1,266 @@
+<nav  *ngIf="isLogged" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light  bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" routerLink="/customer-dashboard">
+       Cargovio
+      </a>
+    </div>
+    <app-customer-navbar></app-customer-navbar>
+  </div>
+</nav>
+<div class="main-content" id="panel" *ngIf="isLogged">
+  <!-- Topnav -->
+ 
+  <!-- Header -->
+  <!-- Header -->
+  <div class="header bg-gradient-info pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a routerLink="/manage-quotation"><i class="ni ni-align-left-2"></i></a></li>
+              <li class="breadcrumb-item"><a routerLink="/customer-dashboard">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/manage-quotation">Add New Quotation</a></li>
+             
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--6" style="padding-top:40px;">
+    <div class="row">
+      <div class="col-md-9 mx-auto">
+        <div class="card mx-4">
+          <div class="card-body p-4">
+            <form [formGroup]="Form" (ngSubmit)="onFormSubmit()">
+              <h1 style="text-align:center">Add Details For Quotation</h1>
+              <div class="row">
+                  <div class="col-md-6">
+                      <h4>Sender Details</h4>
+                      <div class="input-group mb-3">  
+                        <input type="text" class="form-control" placeholder="Address(Area and Street)"  formControlName="SourceAddress1"> 
+                        <span class="text-danger"
+                          *ngIf="(quotationControl.SourceAddress1.touched || submitted) && quotationControl.SourceAddress1.errors?.required">
+                          Area and Street is required
+                      </span>
+                      </div>
+                      <div class="input-group mb-3">  
+                        <input type="text" class="form-control" placeholder="Locality"  formControlName="SourceAddress2"> 
+                        <span class="text-danger"
+                            *ngIf="(quotationControl.SourceAddress2.touched || submitted) && quotationControl.SourceAddress2.errors?.required">
+                            Locality is required
+                        </span>
+                      </div>
+                  
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="input-group mb-3">  
+                                <input type="text" class="form-control" placeholder="Pincode"  formControlName="SourcePincode">  
+                                  <span class="text-danger"
+                                    *ngIf="(quotationControl.SourcePincode.touched || submitted) && quotationControl.SourcePincode.errors?.required">
+                                    Pincode is required
+                                  </span>
+                                  <span *ngIf="quotationControl.SourcePincode.errors?.pattern" class="text-danger">SourcePincode must be a 6
+                                    digit
+                                  </span>
+                              </div>
+                            </div>
+                        
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">  
+                                <input type="text" class="form-control" placeholder="City"  formControlName="SourceCity">  
+                                <span class="text-danger"
+                                    *ngIf="(quotationControl.SourceCity.touched || submitted) && quotationControl.SourceCity.errors?.required">
+                                    City is required
+                                </span>
+                              </div> 
+                        </div>
+                      </div>
+                
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <input type="text" class="form-control" placeholder="State"  formControlName="SourceState">  
+                              <span class="text-danger"
+                                  *ngIf="(quotationControl.SourceState.touched || submitted) && quotationControl.SourceState.errors?.required">
+                                  State is required
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="input-group mb-3">  
+                                <input type="text" class="form-control" placeholder="Country"  formControlName="SourceCountry">  
+                                <span class="text-danger"
+                                  *ngIf="(quotationControl.SourceCountry.touched || submitted) && quotationControl.SourceCountry.errors?.required">
+                                  Country is required
+                                </span>
+                          </div> 
+                        </div>
+                        
+                        
+                      </div>
+                     
+                  </div>
+                  <div class="col-md-6">
+                      <h4>Receiver Details</h4>
+                      <div class="input-group mb-3">  
+                        <input type="text" class="form-control" placeholder="Address(Area and Street)"  formControlName="DestinationAddress1"> 
+                        <span class="text-danger"
+                            *ngIf="(quotationControl.DestinationAddress1.touched || submitted) && quotationControl.DestinationAddress1.errors?.required">
+                            Area and Street is required
+                        </span>
+                      </div>  
+                   
+                      <div class="input-group mb-3">  
+                        <input type="text" class="form-control" placeholder="Locality"  formControlName="DestinationAddress2">  
+                        <span class="text-danger"
+                          *ngIf="(quotationControl.DestinationAddress2.touched || submitted) && quotationControl.DestinationAddress2.errors?.required">
+                          Locality is required
+                        </span>
+                      </div>  
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="input-group mb-3">  
+                                  <input type="text" class="form-control" placeholder="Pincode"  formControlName="DestinationPincode">  
+                                  <span class="text-danger"
+                                  *ngIf="(quotationControl.DestinationPincode.touched || submitted) && quotationControl.DestinationPincode.errors?.required">
+                                  Pincode is required
+                                </span>
+                                <span *ngIf="quotationControl.DestinationPincode.errors?.pattern" class="text-danger">DestinationPincode must be a 6
+                                    digit
+                                </span>
+                               
+                                </div> 
+                          </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">  
+                                <input type="text" class="form-control" placeholder="City"  formControlName="DestinationCity">  
+                                <span class="text-danger"
+                                  *ngIf="(quotationControl.DestinationCity.touched || submitted) && quotationControl.DestinationCity.errors?.required">
+                                  City is required
+                                  </span>                              
+                              </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">  
+                                <input type="text" class="form-control" placeholder="State"  formControlName="DestinationState">  
+                                <span class="text-danger"
+                                    *ngIf="(quotationControl.DestinationState.touched || submitted) && quotationControl.DestinationState.errors?.required">
+                                    State is required
+                                </span>                      
+                              </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group mb-3">  
+                              <input type="text" class="form-control" placeholder="Country"  formControlName="DestinationCountry">  
+                              <span class="text-danger"
+                              *ngIf="(quotationControl.DestinationCountry.touched || submitted) && quotationControl.DestinationCountry.errors?.required">
+                              Country is required
+                              </span>                      
+                            </div> 
+                      </div>
+                      </div>
+                      
+     
+                  </div>
+                </div>
+  
+                    <h4>Package Details</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                    <div class="input-group mb-4">
+                      <input type="text" class="form-control" placeholder="Packagename" formControlName="Packagename">
+                      <span class="text-danger"
+                      *ngIf="(quotationControl.Packagename.touched || submitted) && quotationControl.Packagename.errors?.required">
+                      Package name is required
+                    </span>                  
+                </div>
+  
+                        <div class="input-group mb-4">
+                          <input type="text" class="form-control" placeholder="Quantity" formControlName="Quantity">
+                          <span class="text-danger"
+                          *ngIf="(quotationControl.Quantity.touched || submitted) && quotationControl.Quantity.errors?.required">
+                          Quantity is required
+                        </span>
+                        <span
+                        *ngIf="quotationControl.Quantity.errors?.pattern"
+                        class="text-danger">Quantity at least 1 digit
+                         </span>                      
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="input-group mb-4">
+                              <input type="text" class="form-control" placeholder="Width" formControlName="Width">
+                              <span class="text-danger"
+                              *ngIf="(quotationControl.Width.touched || submitted) && quotationControl.Width.errors?.required">
+                              Width is required
+                            </span>
+                            <span
+                            *ngIf="quotationControl.Width.errors?.pattern"
+                            class="text-danger">Width at least 1 digit
+                              </span>
+                            </div>
+                      
+                   
+                      
+                          <div class="input-group mb-4">
+                              <input type="text" class="form-control" placeholder="Height" formControlName="Height">
+                              <span class="text-danger"
+                              *ngIf="(quotationControl.Height.touched || submitted) && quotationControl.Height.errors?.required">
+                              Height is required
+                            </span>
+                            <span
+                            *ngIf="quotationControl.Height.errors?.pattern"
+                            class="text-danger">Height at least 1 digit
+                              </span>                          
+                            </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="input-group mb-4">
+                              <input type="text" class="form-control" placeholder="Lenght" formControlName="Lenght">
+                              <span class="text-danger"
+                              *ngIf="(quotationControl.Lenght.touched || submitted) && quotationControl.Lenght.errors?.required">
+                              Lenght is required
+                            </span>
+                            <span
+                            *ngIf="quotationControl.Lenght.errors?.pattern"
+                            class="text-danger">Lenght at least 1 digit
+                            </span>                        
+                            </div>
+                      
+                     
+                          <div class="input-group mb-4">
+                              <input type="text" class="form-control" placeholder="Weight" formControlName="Weight">
+                              <span class="text-danger"
+                              *ngIf="(quotationControl.Weight.touched || submitted) && quotationControl.Weight.errors?.required">
+                              Weight is required
+                            </span>
+                            <span
+                            *ngIf="quotationControl.Weight.errors?.pattern"
+                            class="text-danger">Weight at least 1 digit
+                            </span>                              
+                            </div>
+                          </div>
+                    </div>
+        
+                    <button type="submit" class="btn btn-block btn-success">Generate Quotation</button>
+            </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+</div>
+
+
+

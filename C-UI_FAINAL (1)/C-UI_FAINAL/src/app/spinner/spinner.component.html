@@ -1,0 +1,78 @@
+
+<div class="page-overlay-wrapper" *ngIf="showSpinner">
+    <div class="loader">Please Wait...</div>
+</div>
+
+<style>
+    @keyframes bouncing {
+  0% {
+    top: 40%;
+  }
+  100% {
+    top: 30%;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.page-overlay-wrapper {
+  position: fixed;
+  width: 150%;
+  height: 100%;
+  top: 0;
+  left :0;
+  z-index: 980;
+  background: rgba(89, 92, 87, 0.5);
+    
+    
+}
+/* .loader {
+  border: 13px solid #f3f3f3;
+  border-radius: 30%;
+  border-top: 16px solid #3498db;
+  width: 60px;
+  height: 60px;
+  margin-left: 30%;
+  margin-top: 13%;;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  /* animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); } */
+/* } */ 
+.loader {
+  animation:spin 1s infinite linear;
+  border:solid 2vmin transparent;
+  border-radius:50%;
+  border-right-color:rgb(6, 214, 241);
+  border-top-color:rgb(6, 214, 241);
+  box-sizing:border-box;
+  height:20vmin;
+  left:calc(50% - 10vmin);
+  position:fixed;
+  top:calc(50% - 10vmin);
+  width:20vmin;
+  z-index:1;
+  
+}
+
+@keyframes spin {
+  100% {
+    transform:rotate(360deg);
+  }
+}
+</style>

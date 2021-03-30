@@ -1,0 +1,158 @@
+<div class="container" style="padding-top:40px;">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card mx-4">
+                <div class="card-body p-4">
+                    <form [formGroup]="Form" (ngSubmit)="onFormSubmit()"> 
+
+                        <h2 style="text-align:center">Add your details</h2>
+                        
+                    
+                        <div class="input-group mb-3">
+                             <input type="text" class="form-control" id="UserName" placeholder="User Name" formControlName="UserName"
+                                required> 
+                                <span class="text-danger"
+                                *ngIf="(registerFormControl.UserName.touched || submitted) && registerFormControl.UserName.errors?.required">
+                                UserName is required
+                            </span>
+                        </div> 
+                        <div  *ngIf="registerFormControl.UserName.hasError('minlength')"class="text-danger">
+                            Please Enter At least 8 charactors
+                        </div>
+                         <!-- <div *ngIf="Form.controls.UserName.invalid && (Form.get('UserName').dirty || Form.get('UserName').touched)" class="alert alert-danger">
+                                <div *ngIf="Form.get('UserName').hasError('required')">
+                                  User Name is required.
+                                </div>
+                        </div>  -->
+                       
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Enter Your Email"
+                                formControlName="Email" required>
+                                <span class="text-danger"
+                                *ngIf="(registerFormControl.Email.touched || submitted) && registerFormControl.Email.errors?.required">
+                                Email is required
+                            </span>
+                        </div>
+                        <div
+                      *ngIf="registerFormControl.Email.errors?.pattern"
+                      class="text-danger"
+                      >Email must be a valid email address</div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="Enter Your Password"
+                                formControlName="Password" required>
+                                <span class="text-danger"
+                                *ngIf="(registerFormControl.Password.touched || submitted) && registerFormControl.Password.errors?.required">
+                                Password is required
+                            </span>
+                            
+                        </div>
+                        <div *ngIf="registerFormControl.Password.errors?.pattern"  class="text-danger">
+                            Password must contain at least min length of 8 char
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Enter Your Mobile number"
+                                formControlName="ContactNo" required>
+                                <span class="text-danger"
+                                *ngIf="(registerFormControl.ContactNo.touched || submitted) && registerFormControl.ContactNo.errors?.required">
+                                ContactNo is required
+                            </span>
+                        </div>
+                        <div
+                        *ngIf="registerFormControl.ContactNo.errors?.pattern"
+                        class="text-danger">
+                        Contact number must be a 10 digit
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Address(Area and Street)"
+                                formControlName="Addressline1" required>
+                                <span class="text-danger"
+                                *ngIf="(registerFormControl.Addressline1.touched || submitted) && registerFormControl.Addressline1.errors?.required">
+                                Addressline1 is required
+                            </span>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Locality"
+                                formControlName="Addressline2" required>
+                                <span class="text-danger"
+                                *ngIf="(registerFormControl.Addressline2.touched || submitted) && registerFormControl.Addressline2.errors?.required">
+                                Addressline2 is required
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-4">
+                                    <!-- <input type="text" class="form-control" placeholder="City" formControlName="City"
+                                        required> -->
+                                        <select required name="City" formControlName="City"  class="form-control">  
+                                            <option value="undefined" selected>Select City</option>
+                                            <option *ngFor="let office of allOffice"  [ngValue]="office.BranchLocation"> {{office.BranchLocation}}  </option>  
+                                          </select>
+                                        <span class="text-danger"
+                                *ngIf="(registerFormControl.City.touched || submitted) && registerFormControl.City.errors?.required">
+                                City is required
+                            </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-4">
+                                    <input type="text" class="form-control" placeholder="State" formControlName="State"
+                                        required>
+                                        <span class="text-danger"
+                                *ngIf="(registerFormControl.State.touched || submitted) && registerFormControl.State.errors?.required">
+                                State is required
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-4">
+                                    <input type="text" class="form-control" placeholder="Country"
+                                        formControlName="Country" required>
+                                        <span class="text-danger"
+                                *ngIf="(registerFormControl.Country.touched || submitted) && registerFormControl.Country.errors?.required">
+                                Country is required
+                            </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-4">
+                                    <input type="text" class="form-control"  placeholder="Pincode"
+                                        formControlName="Pincode" required>
+                                        <span class="text-danger"
+                                *ngIf="(registerFormControl.Pincode.touched || submitted) && registerFormControl.Pincode.errors?.required">
+                                Pincode is required
+                            </span>
+                                    <span
+                                    *ngIf="registerFormControl.Pincode.errors?.pattern"
+                                    class="text-danger">Pincode must be a 6 digit
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="input-group mb-4">
+                            <select formControlName="Role" class="form-control">
+                                <option value="">Select Role</option>
+                                <option value="CustomerAdmin">Customer Admin</option>
+                                <option value="Customer" selected>Customer</option>
+                            </select>
+                        </div>
+                        <!-- <button type="submit"
+                        [disabled]="Form.pristine || Form.invalid" class="btn btn-success">Register</button>
+                         -->
+                        
+                         <button type="submit" class="btn btn-primary btn-block">Register <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                         </button>
+                         
+                    </form>
+                    <a class="nav-link" routerLink="/login">Login Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

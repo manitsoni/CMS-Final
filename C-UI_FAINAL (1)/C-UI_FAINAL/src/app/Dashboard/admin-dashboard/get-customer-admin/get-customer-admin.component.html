@@ -1,0 +1,112 @@
+<nav  *ngIf="isLogged" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" routerLink="/admin-dashboard">
+       Cargovio
+      </a>
+    </div>
+    <app-admin-navbar></app-admin-navbar>
+  </div>
+</nav>
+<div class="main-content" id="panel" *ngIf="isLogged">
+  <!-- Topnav -->
+ 
+  <!-- Header -->
+  <!-- Header -->
+  <div class="header bg-gradient-info pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a routerLink="/get-customer-admin"><i class="fa fa-users"></i></a></li>
+              <li class="breadcrumb-item"><a routerLink="/admin-dashboard">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/get-customer-admin">Customer Admin</a></li>
+            
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">My Customer Admins</h3>
+          </div>
+          <div class="col-md-3">
+            <input class="form-control" type="text" placeholder="Search With Customer Admin Details..." [(ngModel)]="filter"> 
+          </div>
+          <br>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                    
+      <th class="tbl2">Active</th>
+      <th class="tbl2">Verify</th>
+      <th class="tbl2">UserName</th>  
+      <th class="tbl2">Email</th>  
+      <th class="tbl2">ContactNo</th>    
+      <th class="tbl2">AddressLine1</th>
+      <th class="tbl2">AddressLine2</th>
+      <th class="tbl2">City</th>
+      <th class="tbl2">State</th>
+      <th class="tbl2">Country</th>
+      <th class="tbl2">Pincode</th>
+      
+      <th class="tbl2">OfficeLocation</th>
+      <th class="tbl2">CreatedDate</th>
+      <th class="tbl2">UpdatedDate</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <tr *ngFor="let customerAdmin of allCustomerAdmin | async|filter:filter| paginate: { itemsPerPage: 5, currentPage: p }">  
+        
+      
+                  <td class="tbl2" >{{customerAdmin.IsActive}}</td>
+                  <td class="tbl2">{{customerAdmin.IsVerify}}</td>
+                  <td class="tbl2">{{customerAdmin.Username}}</td>
+                  <td class="tbl2">{{customerAdmin.Email}}</td>
+                  <td class="tbl2">{{customerAdmin.ContactNo}}</td>
+                  <td class="tbl2">{{customerAdmin.Addressline1}}</td>
+                  <td class="tbl2">{{customerAdmin.Addressline2}}</td>
+                  <td class="tbl2">{{customerAdmin.City}}</td>
+                  <td class="tbl2">{{customerAdmin.State}}</td>
+                  <td class="tbl2">{{customerAdmin.Country}}</td>
+                  <td class="tbl2">{{customerAdmin.PinCode}}</td>
+                  <td class="tbl2">{{customerAdmin.OfficeLocation}}</td>
+                  <td class="tbl2">{{customerAdmin.CreatedDate}}</td>
+                  <td class="tbl2">{{customerAdmin.UpdatedDate}}</td>
+                </tr>
+              </tbody>
+              <ul class="pagination col-md-12">  
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+              </ul>  
+            </table>
+          </div>
+          <!-- Card footer -->
+         
+        </div>
+      </div>
+    </div>
+    <!-- Dark table -->
+   
+    <!-- Footer -->
+   
+  </div>
+</div>
+
+<style>
+  .table-responsive{
+    width:100%;
+    height:100%;
+    overflow:auto;
+}
+</style>
